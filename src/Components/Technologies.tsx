@@ -1,7 +1,7 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import technologies from "../data/technologies.json";
 
 type Technology = {
@@ -15,26 +15,27 @@ type Technology = {
   badge: string;
 };
 
-
-
 const Technologies = () => {
   const [stack, setStack] = useState<Technology[]>([]);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleAddToStack = (technology: Technology) => {
-
     const alreadyAdded = stack.some(
       (item) => item.id === technology.id
     );
-
-
 
     if (alreadyAdded) {
       toast.warning(`${technology.name} is already in your stack!`);
       return;
     }
-
-
 
     setStack([...stack, technology]);
 
@@ -44,10 +45,7 @@ const Technologies = () => {
   const handleRemove = (id: number) => {
     const removedItem = stack.find((item) => item.id === id);
 
-
     setStack(stack.filter((item) => item.id !== id));
-
-
 
     if (removedItem) {
       toast.info(`${removedItem.name} removed from your stack!`);
@@ -59,39 +57,40 @@ const Technologies = () => {
     toast.info("All technologies removed from your stack!");
   };
 
+  if (loading) {
+    return (
+      <div className="flex min-h-[400px] items-center justify-center bg-bg2">
+        <p className="text-xl font-semibold text-heading">
+          Loading...
+        </p>
+      </div>
+    );
+  }
+
   return (
     <>
       <ToastContainer />
-
-      
-
 
       <section className="bg-bg2 py-12 md:py-16">
         <div className="container mx-auto px-4">
 
           <div className="mb-8">
 
-
             <h2 className="text-3xl font-bold text-heading md:text-4xl">
               Explore the{" "}
               <span className="bg-gradient-to-r from-orange-500 via-pink-500 to-violet-600 bg-clip-text text-transparent">
                 Technologies
               </span>
-
-
             </h2>
 
-            
             <p className="mt-2 text-text">
               Pick one technology per category to build your ideal stack.
             </p>
-
 
           </div>
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
 
-            
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:col-span-3 lg:grid-cols-3">
 
               {technologies.map((technology) => {
@@ -106,6 +105,7 @@ const Technologies = () => {
                   >
 
                     <div className="flex items-center justify-between">
+
                       <img
                         src={technology.icon}
                         alt={technology.name}
@@ -115,6 +115,7 @@ const Technologies = () => {
                       <span className="rounded-full bg-purple/20 px-3 py-1 text-xs font-medium text-purple3">
                         {technology.badge}
                       </span>
+
                     </div>
 
                     <h3 className="mt-4 text-lg font-bold text-heading">

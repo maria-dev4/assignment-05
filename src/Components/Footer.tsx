@@ -1,4 +1,3 @@
-
 import React from "react";
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 import Logo from "../assets/logo-text-dev-white.png";
