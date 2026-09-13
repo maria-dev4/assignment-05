@@ -18,6 +18,8 @@ function App() {
       
       <Technologies />
 
+      <Footer/>
+
 
 
       
