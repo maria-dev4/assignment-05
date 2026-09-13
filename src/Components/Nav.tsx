@@ -61,7 +61,8 @@ const Nav = () => {
 
 
           <ul className="flex items-center gap-8 text-text">
-            <li className="text-btn1">Home</li>
+            <li className="relative text-white">Home<span className="absolute -bottom-3 left-0 w-full h-0.5 rounded-full bg-[#dce8f4]"></span></li>
+
             <li>Technologies</li>
             <li>Projects</li>
             <li>About</li>
