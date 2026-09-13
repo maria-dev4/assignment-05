@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import JavaIcon from "../assets/java.svg";
 import technologies from "../data/technologies.json";
 
+
+
 type Technology = {
   id: number;
   name: string;
@@ -16,18 +18,26 @@ type Technology = {
   badge: string;
 };
 
+
+
+
 const Technologies = () => {
   const [stack, setStack] = useState<Technology[]>([]);
+
+
 
   const handleAddToStack = (technology: Technology) => {
     const alreadyAdded = stack.some(
       (item) => item.id === technology.id
     );
 
+
     if (alreadyAdded) {
       toast.warning(`${technology.name} is already in your stack!`);
       return;
     }
+
+
 
     setStack([...stack, technology]);
 
@@ -39,23 +49,31 @@ const Technologies = () => {
 
     setStack(stack.filter((item) => item.id !== id));
 
+
+
     if (removedItem) {
       toast.info(`${removedItem.name} removed from your stack!`);
     }
   };
+
+
 
   const handleRemoveAll = () => {
     setStack([]);
     toast.info("All technologies removed from your stack!");
   };
 
+ 
+ 
   return (
     <>
       <ToastContainer />
 
+
       <section className="bg-bg2 py-12 md:py-16">
         <div className="container mx-auto px-4">
 
+          
           <div className="mb-8">
 
             <h2 className="text-3xl font-bold text-heading md:text-4xl">
@@ -65,9 +83,13 @@ const Technologies = () => {
               </span>
             </h2>
 
+            
+
             <p className="mt-2 text-text">
               Pick one technology per category to build your ideal stack.
             </p>
+
+            
 
           </div>
 
@@ -78,15 +100,20 @@ const Technologies = () => {
               {technologies.map((technology) => {
                 const isAdded = stack.some(
                   (item) => item.id === technology.id
+ 
+ 
                 );
 
                 return (
+
+
                   <div
                     key={technology.id}
-                    className="flex h-full flex-col rounded-xl border border-border bg-card p-4 shadow-sm"
-                  >
+                    className="flex h-full flex-col rounded-xl border border-border bg-card p-4 shadow-sm">
 
                     <div className="flex items-center justify-between">
+
+                      
 
                       <img
                         src={
@@ -94,9 +121,10 @@ const Technologies = () => {
                             ? JavaIcon
                             : technology.icon
                         }
+
+
                         alt={technology.name}
-                        className="h-8 w-8 object-contain"
-                      />
+                        className="h-8 w-8 object-contain"/>
 
                       <span className="rounded-full bg-purple/20 px-3 py-1 text-xs font-medium text-purple3">
                         {technology.badge}
@@ -104,13 +132,15 @@ const Technologies = () => {
 
                     </div>
 
+                    
+
                     <h3 className="mt-4 text-lg font-bold text-heading">
                       {technology.name}
                     </h3>
 
                     <p className="mt-2 min-h-[58px] text-sm leading-5 text-text">
                       {technology.description}
-                    </p>
+                      </p>
 
                     <div className="mt-4 flex items-center justify-between text-xs">
 
@@ -122,9 +152,13 @@ const Technologies = () => {
                         {technology.difficulty}
                       </span>
 
+                        
+
                       <span className="font-medium text-heading2">
                         ⭐ {technology.rating}
                       </span>
+
+                        
 
                     </div>
 
@@ -135,8 +169,7 @@ const Technologies = () => {
                         isAdded
                           ? "cursor-not-allowed bg-muted2"
                           : "bg-gradient-to-r from-purple to-pink hover:opacity-90"
-                      }`}
-                    >
+                      }`}>
                       {isAdded
                         ? "✓ Added to Stack"
                         : "Add to Stack"}
@@ -174,8 +207,7 @@ const Technologies = () => {
                     {stack.map((item) => (
                       <div
                         key={item.id}
-                        className="flex items-center gap-3 rounded-lg border border-border bg-card2 p-3"
-                      >
+                        className="flex items-center gap-3 rounded-lg border border-border bg-card2 p-3">
 
                         <img
                           src={
@@ -184,28 +216,26 @@ const Technologies = () => {
                               : item.icon
                           }
                           alt={item.name}
-                          className="h-9 w-9 object-contain"
-                        />
+                          className="h-9 w-9 object-contain"/>
 
                         <div className="min-w-0 flex-1">
+
+                          
 
                           <h4 className="truncate text-sm font-semibold text-heading">
                             {item.name}
                           </h4>
 
+                          
                           <p className="text-xs text-muted">
                             {item.category}
                           </p>
-
                         </div>
-
                         <button
                           onClick={() => handleRemove(item.id)}
-                          className="text-xl font-bold text-muted hover:text-red"
-                        >
+                          className="text-xl font-bold text-muted hover:text-red">
                           ×
                         </button>
-
                       </div>
                     ))}
 
@@ -214,8 +244,7 @@ const Technologies = () => {
                   <button
                     onClick={handleRemoveAll}
                     className="mt-5 w-full rounded-lg border border-red/50 py-2.5 text-sm font-medium text-red hover:bg-red/10"
-                  >
-                    Remove All
+                  >Remove All
                   </button>
 
                 </>
