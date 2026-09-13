@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import { useState } from "react";
 
 import Logo from "../assets/logo-text-dev-white.png";
 

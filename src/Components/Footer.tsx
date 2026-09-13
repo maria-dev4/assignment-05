@@ -1,4 +1,3 @@
-import React from "react";
 import { FaGithub, FaTwitter, FaLinkedin } from "react-icons/fa";
 import Logo from "../assets/logo-text-dev-white.png";
 
@@ -78,7 +77,7 @@ const Footer = () => {
             <span>Privacy</span>
             <span>Terms</span>
 
-            
+
           </div>
         </div>
       </div>

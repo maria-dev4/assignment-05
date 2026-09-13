@@ -1,5 +1,5 @@
 
-import React from "react";
+
 import BannerImg from "../assets/banner-stack.png";
 
 
@@ -56,7 +56,7 @@ const Banner = () => {
 
         </div>
       </section>
-      
+
     </div>
   );
 };

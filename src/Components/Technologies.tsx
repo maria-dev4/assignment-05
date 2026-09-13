@@ -1,7 +1,7 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import JavaIcon from "../assets/java.svg";
 import technologies from "../data/technologies.json";
 
