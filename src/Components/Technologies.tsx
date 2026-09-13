@@ -1,7 +1,8 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import JavaIcon from "../assets/java.svg";
 import technologies from "../data/technologies.json";
 
 type Technology = {
@@ -17,15 +18,6 @@ type Technology = {
 
 const Technologies = () => {
   const [stack, setStack] = useState<Technology[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const handleAddToStack = (technology: Technology) => {
     const alreadyAdded = stack.some(
@@ -56,16 +48,6 @@ const Technologies = () => {
     setStack([]);
     toast.info("All technologies removed from your stack!");
   };
-
-  if (loading) {
-    return (
-      <div className="flex min-h-[400px] items-center justify-center bg-bg2">
-        <p className="text-xl font-semibold text-heading">
-          Loading...
-        </p>
-      </div>
-    );
-  }
 
   return (
     <>
@@ -107,7 +89,11 @@ const Technologies = () => {
                     <div className="flex items-center justify-between">
 
                       <img
-                        src={technology.icon}
+                        src={
+                          technology.name === "Java"
+                            ? JavaIcon
+                            : technology.icon
+                        }
                         alt={technology.name}
                         className="h-8 w-8 object-contain"
                       />
@@ -151,7 +137,9 @@ const Technologies = () => {
                           : "bg-gradient-to-r from-purple to-pink hover:opacity-90"
                       }`}
                     >
-                      {isAdded ? "✓ Added to Stack" : "Add to Stack"}
+                      {isAdded
+                        ? "✓ Added to Stack"
+                        : "Add to Stack"}
                     </button>
 
                   </div>
@@ -190,7 +178,11 @@ const Technologies = () => {
                       >
 
                         <img
-                          src={item.icon}
+                          src={
+                            item.name === "Java"
+                              ? JavaIcon
+                              : item.icon
+                          }
                           alt={item.name}
                           className="h-9 w-9 object-contain"
                         />
