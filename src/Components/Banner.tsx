@@ -4,7 +4,7 @@ import BannerImg from "../assets/banner-stack.png";
 
 const Banner = () => {
   return (
-    <div className="bg-bg">
+    <div className="bg-bg2">
       <section className="container mx-auto px-4 py-12 md:py-16 lg:py-20">
         <div className="flex flex-col items-center justify-between gap-10 md:flex-row">
 

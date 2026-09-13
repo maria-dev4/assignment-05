@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 
-import Logo from "../assets/logo-text.png";
+import Logo from "../assets/logo-text-dev-white.png";
 
 import { GiHamburgerMenu } from "react-icons/gi";
 
